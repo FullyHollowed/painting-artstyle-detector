@@ -7,7 +7,7 @@ from tensorflow.keras.preprocessing import image
 # Load model
 model = tf.keras.models.load_model('model/artstyle-detector-model.h5')
 
-# Your labels
+# Labels
 class_names = [
     'abstract-expressionism', 'action-painting', 'analytical-cubism',
     'art-nouveau-modern', 'baroque', 'color-field-painting',
@@ -18,14 +18,14 @@ class_names = [
     'romanticism', 'symbolism', 'synthetic-cubism', 'ukiyo-e'
 ]
 
-# Preprocess function
+# Preprocessing
 def preprocess(img):
     img = img.convert("RGB").resize((224, 224))
     img_array = image.img_to_array(img)
     img_array = tf.keras.applications.resnet50.preprocess_input(img_array)
     return np.expand_dims(img_array, axis=0)
 
-# Prediction function
+# Predict function
 def predict_artstyle(img: Image.Image) -> str:
     try:
         arr = preprocess(img)
@@ -37,7 +37,7 @@ def predict_artstyle(img: Image.Image) -> str:
     except Exception as e:
         return f"Error: {str(e)}"
 
-# Gradio UI
+# Gradio interface
 iface = gr.Interface(
     fn=predict_artstyle,
     inputs=gr.Image(type="pil"),
