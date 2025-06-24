@@ -46,4 +46,4 @@ iface = gr.Interface(
     description="Upload a painting to classify its art style."
 )
 
-iface.launch()
+iface.launch(server_name="0.0.0.0", server_port=int(os.environ.get("PORT", 8080)))
