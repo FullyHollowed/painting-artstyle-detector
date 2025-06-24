@@ -1,4 +1,4 @@
-tensorflow
-gradio
-pillow
-numpy
+tensorflow==2.19.0
+gradio==5.34.2
+pillow==10.3.0
+numpy==1.26.4
